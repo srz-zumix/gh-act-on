@@ -1,6 +1,86 @@
 name: deployment test
 on:
+on:
+  # https://docs.github.com/ja/actions/using-workflows/events-that-trigger-workflows
+  branch_protection_rule:
+  check_run:
+  check_suite:
+  create:
+  delete:
+  discussion:
+  discussion_comment:
+  # dynamic:
+  fork:
+  gollum:
+  issue_comment:
+  issues:
+  label:
+  merge_group:
+  milestone:
+  page_build:
+  project:
+  project_card:
+  project_column:
+  public:
+  push:
+  pull_request:
+    types: &pull_request_types
+      - assigned
+      - unassigned
+      - labeled
+      - unlabeled
+      - opened
+      - edited
+      - closed
+      - reopened
+      - synchronize
+      - converted_to_draft
+      - ready_for_review
+      - locked
+      - unlocked
+      - review_requested
+      - review_request_removed
+      - auto_merge_enabled
+      - auto_merge_disabled
+  # pull_request_comment: # -> issue_comment
+  pull_request_review:
+  pull_request_review_comment:
+  pull_request_target:
+    types: *pull_request_types
+  registry_package:
+  release:
+  repository_dispatch:
+    types: [on-demand-test]
+  schedule:
+    - cron: '0 0 * * 0'
+  status:
+  watch:
+  workflow_call:
+    inputs: &workflow_inputs
+      username:
+        description: 'Name'
+        required: true
+        type: string
+      tv:
+        description: 'true flag'
+        type: boolean
+        default: true
+      fv:
+        description: 'false flag'
+        type: boolean
+        default: false
+    secrets:
+      DOCKERHUB_USERNAME:
+        required: true
+      DOCKERHUB_TOKEN:
+        required: true
   workflow_dispatch:
+    inputs: *workflow_inputs
+  workflow_run:
+    workflows: [Lint]
+    types:
+      - requested
+      - completed
 
 jobs:
   deployment-test:
