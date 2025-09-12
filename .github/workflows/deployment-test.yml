@@ -86,4 +86,21 @@ jobs:
     runs-on: ubuntu-latest
     environment: gh-act-env
     steps:
-    - run: echo hello
+    - name: $github
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: |
+        echo "${GITHUB_CONTEXT}"
+    - name: $job
+      env:
+        JOB_CONTEXT: ${{ toJson(job) }}
+      run: |
+        echo "${JOB_CONTEXT}"
+    - name: job api response
+      run: |
+        gh api repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}/jobs | jq
+    - name: $runner
+      env:
+        RUNNER_CONTEXT: ${{ toJson(runner) }}
+      run: |
+        echo "${RUNNER_CONTEXT}"
