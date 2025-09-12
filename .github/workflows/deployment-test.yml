@@ -1,6 +1,5 @@
 name: deployment test
 on:
-on:
   # https://docs.github.com/ja/actions/using-workflows/events-that-trigger-workflows
   branch_protection_rule:
   check_run:
