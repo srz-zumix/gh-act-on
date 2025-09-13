@@ -1,6 +1,12 @@
 name: deployment test
 on:
   workflow_dispatch:
+  pull_request:
+    types:
+      - opened
+      - closed
+      - reopened
+      - synchronize
 
 jobs:
   deployment-test:
