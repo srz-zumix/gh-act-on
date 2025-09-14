@@ -10,21 +10,5 @@ on:
 
 jobs:
   deployment-test:
-    runs-on: ubuntu-latest
-    environment: gh-act-env
-    steps:
-    - run: echo hello
+    uses: ./.github/workflows/reusable-deployment-test.yml
 
-  deployment-approve-test:
-    runs-on: ubuntu-latest
-    environment: gh-act-on-approve
-    steps:
-    - run: echo hello
-
-  deployment-approve-needs-test:
-    runs-on: ubuntu-latest
-    environment: gh-act-on-approve-needs
-    needs: deployment-test
-    steps:
-    - run: echo hello
-  
