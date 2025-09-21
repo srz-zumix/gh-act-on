@@ -10,5 +10,10 @@ on:
 
 jobs:
   deployment-test:
+    strategy:
+      matrix:
+        test:
+          - a
+          - b
     uses: ./.github/workflows/reusable-deployment-test.yml
 
