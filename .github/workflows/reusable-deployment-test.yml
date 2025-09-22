@@ -18,7 +18,7 @@ jobs:
   deployment-approve-needs-test:
     runs-on: ubuntu-latest
     environment: gh-act-on-approve-needs
-    needs: deployment-test
+    needs: deployment-approve-test
     steps:
     - run: echo hello
 
