@@ -5,6 +5,11 @@ on:
 
 jobs:
   reusable_workflow_job:
+    strategy:
+      matrix:
+        test:
+          - hoge
+          - fuga
     uses: srz-zumix/gh-act-on/.github/workflows/events.yml@main
     with:
       username: ${{ github.actor }}
