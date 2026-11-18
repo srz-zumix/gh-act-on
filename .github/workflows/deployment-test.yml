@@ -1,10 +1,19 @@
 name: deployment test
 on:
   workflow_dispatch:
+  pull_request:
+    types:
+      - opened
+      - closed
+      - reopened
+      - synchronize
 
 jobs:
   deployment-test:
-    runs-on: ubuntu-latest
-    environment: gh-act-env
-    steps:
-    - run: echo hello
+    strategy:
+      matrix:
+        test:
+          - a
+          - b
+    uses: ./.github/workflows/reusable-deployment-test.yml
+
